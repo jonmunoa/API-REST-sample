@@ -16,9 +16,9 @@ namespace EjemploAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "Veronica", "Maria", "Pablo", "Alex", "Abel" };
+            return Ok(new string[] { "Veronica", "Maria", "Pablo", "Alex", "Abel" });
         }
 
         /// <summary>
@@ -27,32 +27,32 @@ namespace EjemploAPI.Controllers
         /// <param name="id">Identificador del cliente</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "Veronica";
+            return Ok("Veronica");
         }
 
         /// <summary>
         /// Crea un cliente
         /// </summary>
-        /// <param name="nombre">Nombre del cliente</param>
+        /// <param name="value">Nombre del cliente</param>
         /// <returns></returns>
         [HttpPost]
-        public string Post([FromBody]string nombre)
+        public IActionResult Post([FromBody]string value)
         {
-            return nombre;
+            return Created($"api/clientes/{value}", value);
         }
 
         /// <summary>
         /// Actualiza un cliente
         /// </summary>
         /// <param name="id">Identificador del cliente</param>
-        /// <param name="nombre">Nombre del cliente</param>
+        /// <param name="value">Nombre del cliente</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody]string nombre)
+        public IActionResult Put(int id, [FromBody]string value)
         {
-            return nombre;
+            return Ok(value);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace EjemploAPI.Controllers
         /// <param name="id">Identificador del cliente</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return string.Empty;
+            return NoContent();
         }
     }
 }
